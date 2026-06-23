@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+@import "tailwindcss";
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+html,
+body,
+#root,
+#layout,
+#inner,
+#content {
+  height: 100%;
+}
+
+@layer base {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    appearance: none !important;
+    background: transparent !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+    -webkit-text-fill-color: inherit !important;
+    transition: background-color 9999s ease-in-out 0s !important;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.material-symbols-outlined.primary {
+  color: #0a0a0a;
+}
+
+.material-symbols-outlined.primary.light {
+  color: #fff;
+}
+
+.material-symbols-outlined.sm {
+  font-size: 12px;
+}
+.material-symbols-outlined.sm1 {
+  font-size: 15px;
+}
+
+.material-symbols-outlined.sm2 {
+  font-size: 20px;
+}
+
+.material-symbols-outlined.sm3 {
+  font-size: 16px;
+}
+
+.material-symbols-outlined.sm4 {
+  font-size: 14px;
+}
+
+.material-symbols-outlined.md {
+  font-size: 30px;
+}
+
+.material-symbols-outlined.md1 {
+  font-size: 34px;
+}
+
+.material-symbols-outlined.md2 {
+  font-size: 40px;
+}
+
+.material-symbols-outlined.lg {
+  font-size: 50px;
+}
+
+.select-arrow {
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 20 20' fill='none' stroke='%23333' stroke-width='1.5'><path d='M6 7l4 4 4-4'/></svg>")
+    no-repeat right 10px center;
+}
