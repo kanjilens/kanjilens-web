@@ -1,73 +1,217 @@
-# React + TypeScript + Vite
+<p align="center">
+  <img src="./src/assets/icons/logo.svg" alt="Kanjilens Logo" width="120" />
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1 align="center">Kanjilens</h1>
 
-Currently, two official plugins are available:
+<p align="center">
+  Discover, manage and learn Kanji through an intuitive platform.
+</p>
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# Kanjilens
 
-## React Compiler
+Kanjilens é uma aplicação web desenvolvida para descoberta, gerenciamento e aprendizado de coleções de Kanji. O projeto utiliza uma arquitetura baseada em **Feature-Sliced Design (Feature-First)** para garantir escalabilidade, manutenibilidade e uma clara separação de responsabilidades.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Este projeto faz parte do Trabalho Final da disciplina de Programação Mobile 2026.1.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📱 Aplicações Disponíveis
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Atualmente o ecossistema Kanjilens possui:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Plataforma | Status |
+|------------|---------|
+| 🌐 Web | MVP |
+| 📱 Mobile | Desenvolvimento |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Aplicativo Mobile
+
+O Kanjilens também possui uma versão mobile desenvolvida para dispositivos Android.
+
+🔗 **Repositório Mobile:**  
+[Kanjilens Mobile](https://github.com/kanjilens/kanjilens-mobile)
+
+🔗 **Download / Release:**  
+Em breve...
+
+---
+
+## ✨ Features
+
+| Funcionalidade | Web | Mobile |
+|---------------|-----|---------|
+| Login | ✅ | ✅ |
+| Cadastro | ✅ | ✅ |
+| Autenticação Firebase | ✅ | ✅ |
+| Visualização de Kanji | ✅ | ✅ |
+| Descoberta de Kanji | 🚧 | 🚧 |
+| Filtros | ✅ | ✅ |
+| Internacionalização | 🚧 | 🚧 |
+| Acessibilidade | 🚧 | 🚧 |
+| Comentários | ✅ | ✅ |
+| Modo Offline | 🚧 | 🚧 |
+
+**Legenda**
+
+- ✅ Implementado
+- 🚧 Em desenvolvimento
+- ❌ Não disponível
+
+---
+
+## 🌐 External APIs
+
+O projeto utiliza a API [kanjiapi.dev](https://kanjiapi.dev/) como sua principal fonte de dados para informações de Kanji. Esta API gratuita e aberta fornece dados essenciais como significados, leituras e níveis escolares, que são consumidos pela nossa camada de Repositório para preencher as coleções de Kanji e visualizações detalhadas.
+
+---
+
+## 📁 Estrutura do Projeto
+
+O projeto segue uma arquitetura **Feature-First (Vertical Slicing)**. Em vez de agrupar arquivos por função técnica (componentes, hooks, serviços), eles são organizados por domínio de negócio.
+
+```text
+src/
+├── app/                # Montagem da aplicação (Router, Providers, Páginas Raiz)
+├── assets/             # Recursos estáticos (Ícones, Imagens, Fontes)
+├── features/           # Domínios de negócio
+│   ├── iam/            # Identidade e Acesso
+│   ├── kanji/          # Domínio Kanji
+│   └── dashboard/      # Dashboard do usuário
+├── shared/             # Recursos compartilhados
+│   ├── components/     # Componentes reutilizáveis
+│   ├── hooks/          # Hooks globais
+│   ├── lib/            # Configurações de bibliotecas
+│   ├── services/       # Serviços base
+│   ├── types/          # Tipagens globais
+│   └── utils/          # Utilitários
+├── styles/             # Configurações CSS/Tailwind
+└── types/              # Tipagens de ambiente
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🏛️ Padrões do Projeto
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Vertical Slicing (Feature-First)
+
+Ao adicionar uma nova funcionalidade:
+
+- Crie uma pasta em `src/features/{feature_name}`.
+- Mantenha componentes, hooks e serviços relacionados dentro da feature.
+- Mova algo para `shared` apenas quando for reutilizado por duas ou mais features.
+
+### 2. Arquitetura em Camadas
+
+Fluxo recomendado:
+
+```text
+UI Component
+      ↓
+ Custom Hook
+      ↓
+    Service
+      ↓
+ Repository/API
 ```
+
+#### Components
+
+Responsáveis apenas pela apresentação e interação do usuário.
+
+#### Hooks
+
+Responsáveis pelo gerenciamento de estado local e orquestração.
+
+#### Services
+
+Responsáveis pelas regras de negócio.
+
+#### Repositories
+
+Responsáveis pela comunicação com APIs ou banco de dados.
+
+### 3. Padrões de Código
+
+- TypeScript com tipagem estrita.
+- Evitar uso de `any`.
+- Tailwind CSS para estilização.
+- Context API para estado global.
+- `useState` e `useReducer` para estado local.
+
+#### Convenções de Nome
+
+| Tipo | Convenção | Exemplo |
+|--------|-----------|----------|
+| Hook | `use{Feature}{Action}` | `useKanjiDetails` |
+| Service | `{Domain}Service` | `kanji.service.ts` |
+| Component | PascalCase | `KanjiCard.tsx` |
+
+### 4. Estratégia de Testes
+
+- Testes unitários utilizando Jest.
+- React Testing Library para componentes React.
+- Arquivos de teste próximos ao código testado.
+
+Exemplo:
+
+```text
+KanjiCard.tsx
+KanjiCard.test.tsx
+```
+
+---
+
+## 🚀 Como Executar
+
+### Instalar dependências
+
+```bash
+npm install
+```
+
+### Executar ambiente de desenvolvimento
+
+```bash
+npm run dev
+```
+
+### Executar lint
+
+```bash
+npm run lint
+```
+
+### Executar testes
+
+```bash
+npm test
+```
+
+### Gerar build de produção
+
+```bash
+npm run build
+```
+
+---
+
+## 👥 Colaboradores
+
+
+
+---
+
+## 🤝 Contribuindo
+
+1. Faça um Fork do projeto.
+2. Crie uma branch para sua feature.
+3. Faça seus commits.
+4. Envie um Pull Request.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
