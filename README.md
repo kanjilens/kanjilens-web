@@ -24,7 +24,7 @@ Atualmente o ecossistema Kanjilens possui:
 | Plataforma | Status |
 |------------|---------|
 | 🌐 Web | MVP |
-| 📱 Mobile | Desenvolvimento |
+| 📱 Mobile | MVP |
 
 ### Aplicativo Mobile
 
