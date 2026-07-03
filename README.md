@@ -51,7 +51,6 @@ Em breve...
 | Internacionalização | 🚧 | 🚧 |
 | Acessibilidade | 🚧 | 🚧 |
 | Comentários | ✅ | ✅ |
-| Modo Offline | 🚧 | 🚧 |
 
 **Legenda**
 
